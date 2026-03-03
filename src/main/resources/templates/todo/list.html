@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -37,10 +37,15 @@
                 <tbody>
                 <tr th:each="todo : ${todos}">
                     <td class="px-3" th:text="${todo.id}">1</td>
-                    <td th:text="${todo.title}">Sample Title</td>
+                    <td>
+                        <span th:text="${todo.title}" th:classappend="${todo.completed} ? 'text-decoration-line-through text-muted' : ''">Sample Title</span>
+                    </td>
                     <td class="text-center" th:text="${todo.completed} ? '&#23436;&#20102;' : '&#26410;&#23436;&#20102;'">&#26410;&#23436;&#20102;</td>
                     <td class="text-center">
-                        <div class="d-flex justify-content-center gap-2">
+                        <div class="d-flex justify-content-center gap-2 flex-wrap">
+                            <form th:action="@{/todo/{id}/toggle(id=${todo.id})}" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-outline-success btn-sm" th:text="${todo.completed} ? '&#26410;&#23436;&#20102;&#12395;&#25147;&#12377;' : '&#23436;&#20102;&#12395;&#12377;&#12427;'">&#23436;&#20102;&#12395;&#12377;&#12427;</button>
+                            </form>
                             <a th:href="@{/todo/{id}/edit(id=${todo.id})}" class="btn btn-outline-primary btn-sm">&#32232;&#38598;</a>
                             <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="d-inline" onsubmit="return confirm('\u672c\u5f53\u306b\u524a\u9664\u3057\u307e\u3059\u304b\uff1f');">
                                 <button type="submit" class="btn btn-danger btn-sm">&#21066;&#38500;</button>
