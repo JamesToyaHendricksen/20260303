@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo Confirm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+<body>
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <h1 class="h4 mb-3">&#30331;&#37682;&#20869;&#23481;&#12398;&#30906;&#35469;</h1>
+
+            <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                    <h2 class="h6 text-muted mb-2">Title</h2>
+                    <p class="mb-0">&#12469;&#12531;&#12503;&#12523;&#12479;&#12473;&#12463;</p>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2">
+                <a th:href="@{/todo/complete}" class="btn btn-primary">&#30331;&#37682;</a>
+                <a th:href="@{/todo/new}" class="btn btn-outline-secondary">&#25147;&#12427;</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>
