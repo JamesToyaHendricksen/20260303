@@ -13,6 +13,16 @@
         <a th:href="@{/todo/new}" class="btn btn-primary">&#26032;&#35215;&#30331;&#37682;</a>
     </div>
 
+    <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show flash-alert" role="alert" th:text="${successMessage}">
+        Success message
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show flash-alert" role="alert" th:text="${errorMessage}">
+        Error message
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <div class="card">
         <div class="card-body p-0">
             <table class="table table-striped table-hover mb-0 align-middle">
@@ -30,9 +40,12 @@
                     <td th:text="${todo.title}">Sample Title</td>
                     <td class="text-center" th:text="${todo.completed} ? '&#23436;&#20102;' : '&#26410;&#23436;&#20102;'">&#26410;&#23436;&#20102;</td>
                     <td class="text-center">
-                        <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="d-inline" onsubmit="return confirm('\u672c\u5f53\u306b\u524a\u9664\u3057\u307e\u3059\u304b\uff1f');">
-                            <button type="submit" class="btn btn-danger btn-sm">&#21066;&#38500;</button>
-                        </form>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a th:href="@{/todo/{id}/edit(id=${todo.id})}" class="btn btn-outline-primary btn-sm">&#32232;&#38598;</a>
+                            <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="d-inline" onsubmit="return confirm('\u672c\u5f53\u306b\u524a\u9664\u3057\u307e\u3059\u304b\uff1f');">
+                                <button type="submit" class="btn btn-danger btn-sm">&#21066;&#38500;</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 <tr th:if="${#lists.isEmpty(todos)}">
@@ -44,5 +57,12 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+<script>
+  setTimeout(function () {
+    document.querySelectorAll('.flash-alert').forEach(function (element) {
+      bootstrap.Alert.getOrCreateInstance(element).close();
+    });
+  }, 3000);
+</script>
 </body>
 </html>

@@ -10,6 +10,12 @@
         ORDER BY id
     </select>
 
+    <select id="findById" parameterType="long" resultType="com.example.demo.model.Todo">
+        SELECT id, title, completed
+        FROM todos
+        WHERE id = #{id}
+    </select>
+
     <insert id="insert"
             parameterType="com.example.demo.model.Todo"
             useGeneratedKeys="true"
