@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+﻿package com.example.demo.controller;
 
 import java.util.List;
 
@@ -43,6 +43,26 @@ public class TodoController {
         return "todo/edit";
     }
 
+    @PostMapping("/{id}/update")
+    public String update(@PathVariable("id") Long id,
+                         @RequestParam("title") String title,
+                         RedirectAttributes redirectAttributes) {
+        Todo existingTodo = todoService.findById(id);
+
+        Todo todo = new Todo();
+        todo.setId(id);
+        todo.setTitle(title);
+        todo.setCompleted(existingTodo != null && Boolean.TRUE.equals(existingTodo.getCompleted()));
+
+        boolean updated = todoService.update(todo);
+        if (updated) {
+            redirectAttributes.addFlashAttribute("successMessage", "更新が完了しました");
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "更新に失敗しました");
+        }
+        return "redirect:/todo";
+    }
+
     @PostMapping("/confirm")
     public String confirm(@RequestParam("title") String title, Model model) {
         model.addAttribute("title", title);
@@ -59,9 +79,9 @@ public class TodoController {
     public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         boolean deleted = todoService.deleteById(id);
         if (deleted) {
-            redirectAttributes.addFlashAttribute("successMessage", "ToDo\u3092\u524a\u9664\u3057\u307e\u3057\u305f");
+            redirectAttributes.addFlashAttribute("successMessage", "ToDoを削除しました");
         } else {
-            redirectAttributes.addFlashAttribute("errorMessage", "\u524a\u9664\u306b\u5931\u6557\u3057\u307e\u3057\u305f");
+            redirectAttributes.addFlashAttribute("errorMessage", "削除に失敗しました");
         }
         return "redirect:/todo";
     }

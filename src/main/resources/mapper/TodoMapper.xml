@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -23,6 +23,13 @@
         INSERT INTO todos (title, completed)
         VALUES (#{title}, COALESCE(#{completed}, FALSE))
     </insert>
+
+    <update id="update" parameterType="com.example.demo.model.Todo">
+        UPDATE todos
+        SET title = #{title},
+            completed = #{completed}
+        WHERE id = #{id}
+    </update>
 
     <delete id="deleteById" parameterType="long">
         DELETE FROM todos

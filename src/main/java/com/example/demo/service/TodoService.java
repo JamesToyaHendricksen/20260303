@@ -1,4 +1,4 @@
-package com.example.demo.service;
+﻿package com.example.demo.service;
 
 import java.util.List;
 
@@ -29,6 +29,10 @@ public class TodoService {
         todo.setTitle(title);
         todo.setCompleted(false);
         todoMapper.insert(todo);
+    }
+
+    public boolean update(Todo todo) {
+        return todoMapper.update(todo) > 0;
     }
 
     public boolean deleteById(Long id) {
