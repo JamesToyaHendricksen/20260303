@@ -21,6 +21,7 @@
                     <th scope="col" class="px-3">ID</th>
                     <th scope="col">&#12479;&#12452;&#12488;&#12523;</th>
                     <th scope="col" class="text-center">&#23436;&#20102;&#29366;&#24907;</th>
+                    <th scope="col" class="text-center">&#25805;&#20316;</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,9 +29,14 @@
                     <td class="px-3" th:text="${todo.id}">1</td>
                     <td th:text="${todo.title}">Sample Title</td>
                     <td class="text-center" th:text="${todo.completed} ? '&#23436;&#20102;' : '&#26410;&#23436;&#20102;'">&#26410;&#23436;&#20102;</td>
+                    <td class="text-center">
+                        <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">&#21066;&#38500;</button>
+                        </form>
+                    </td>
                 </tr>
                 <tr th:if="${#lists.isEmpty(todos)}">
-                    <td colspan="3" class="text-center py-4 text-muted">No ToDo items.</td>
+                    <td colspan="4" class="text-center py-4 text-muted">No ToDo items.</td>
                 </tr>
                 </tbody>
             </table>
