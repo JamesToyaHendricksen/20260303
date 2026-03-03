@@ -19,15 +19,15 @@
                 <thead class="table-light">
                 <tr>
                     <th scope="col" class="px-3">ID</th>
-                    <th scope="col">Title</th>
-                    <th scope="col" class="text-center">Status</th>
+                    <th scope="col">&#12479;&#12452;&#12488;&#12523;</th>
+                    <th scope="col" class="text-center">&#23436;&#20102;&#29366;&#24907;</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="todo : ${todos}">
                     <td class="px-3" th:text="${todo.id}">1</td>
                     <td th:text="${todo.title}">Sample Title</td>
-                    <td class="text-center" th:text="${todo.status}">OPEN</td>
+                    <td class="text-center" th:text="${todo.completed} ? '&#23436;&#20102;' : '&#26410;&#23436;&#20102;'">&#26410;&#23436;&#20102;</td>
                 </tr>
                 <tr th:if="${#lists.isEmpty(todos)}">
                     <td colspan="3" class="text-center py-4 text-muted">No ToDo items.</td>
